@@ -1,0 +1,14 @@
+body {
+  background-color: #008b8b;
+  font-family: verdana;
+  font-size: 20px;
+}
+
+form {
+  padding: 10px;
+}
+
+input {
+  padding: 5px;
+  border-color: black;
+}
