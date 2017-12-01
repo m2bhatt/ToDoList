@@ -4,15 +4,14 @@ var items = [];
 //and no brackets at all?
 function addItem(form){
   var input = form.children[0].value;
-  var list = document.createElement("li");
+  var listItem = document.createElement("li");
   var text = document.createTextNode(input);
 
 //  var check = document.createElement("input");
 //  check.setAttribute("type", "checkbox");
 // check.type = "checkbox";
 
-
-  list.appendChild(text);
-  document.body.appendChild(list);
+  listItem.appendChild(text);
+  document.getElementsByTagName('ul')[0].appendChild(listItem);
   form.reset();
 };
