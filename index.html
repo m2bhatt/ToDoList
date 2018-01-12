@@ -7,10 +7,10 @@
     <title> To Do List </title>
   </head>
   <body>
-    <form onsubmit="event.preventDefault(); addItem(this)">
+    <form onsubmit="event.preventDefault(); createTodo(this)">
       <input type="text" placeholder="Add Item.." id="firstList">
     </form>
-    <ul>
-    </ul>  
+    <ul id="myList" onclick="checkList()">
+    </ul>
   </body>
 </html>
