@@ -13,6 +13,16 @@ function addItem(item){ //function call
   var listItem = document.createElement("li");
   var text = document.createTextNode(item);
   listItem.appendChild(text);
-  var list = document.getElementsByTagName('ul')[0];
+  var list = document.getElementsByTagName("ul")[0];
+  listItem.setAttribute("class", "normalText");
+  listItem.addEventListener("click", toggleStrikethrough);
   list.appendChild(listItem);
+}
+
+function toggleStrikethrough(ev) {
+  if (ev.target.className == "normalText") {
+    ev.target.setAttribute("class", "strikeItem");
+  } else {
+    ev.target.setAttribute("class", "normalText");
+  }
 }
