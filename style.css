@@ -27,8 +27,14 @@ li {
 
 .strikeItem {
   text-decoration: line-through;
+  line-height: 5px;
 }
 
 .normalText {
   text-decoration: none;
+}
+
+.delButton{
+  padding: 5px;
+  margin-left: 20px;
 }
