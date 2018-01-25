@@ -15,11 +15,11 @@ function addItem(item){ //function call
   listItem.appendChild(text);
   var list = document.getElementsByTagName("ul")[0];
   listItem.setAttribute("class", "normalText");
-  listItem.addEventListener("click", toggleStrikethrough);
+  listItem.addEventListener("click", toggleDone);
   list.appendChild(listItem);
 }
 
-function toggleStrikethrough(ev) {
+function toggleDone(ev) {
   if (ev.target.className == "normalText") {
     ev.target.setAttribute("class", "strikeItem");
   } else {

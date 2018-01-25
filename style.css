@@ -27,11 +27,12 @@ li {
 
 .strikeItem {
   text-decoration: line-through;
-  line-height: 5px;
+  line-height: 10px;
 }
 
 .normalText {
   text-decoration: none;
+  line-height: 10px;
 }
 
 .delButton{
