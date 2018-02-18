@@ -19,17 +19,17 @@ function addItem(item){ //function call
   list.appendChild(listItem);
 }
 
+function deleteList(){
+  var delText = document.getElementById("myList");
+  while (delText.firstChild){
+    delText.removeChild(delText.firstChild);
+  }
+}
+
 function toggleDone(ev) {
   if (ev.target.className == "normalText") {
     ev.target.setAttribute("class", "strikeItem");
   } else {
     ev.target.setAttribute("class", "normalText");
-  }
-}
-
-function deleteList(){
-  var delText = document.getElementById("myList");
-  while (delText.firstChild){
-    delText.removeChild(delText.firstChild);
   }
 }
