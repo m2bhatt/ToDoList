@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <title> To Do List </title>
   </head>
-  <body>
+  <body onload="retrieveList()">
     <div id="urgentImportant">
       <H4> Urgent, Important </H4>
       <form onsubmit="event.preventDefault(); createTodo(this)">
@@ -19,7 +19,7 @@
       <div id="nonUrgentImportant">
         <H4> Non Urgent, Important </h4>
       </div>
-      
+
     </div>
 
   </body>
