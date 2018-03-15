@@ -30,14 +30,17 @@ h4 {
 
 #urgentImportant {
   background-color: #D7C6CF;
-  width: 80%;
+  width: 40%;
   height: 50%;
   margin-left: 5%;
 }
 
 #nonUrgentImportant {
   background-color: #A2798F;
+  width: 40%;
+  height: 50%;
   margin-left: 5%;
+  float: right;
 }
 
 #myList {

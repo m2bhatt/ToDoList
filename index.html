@@ -16,11 +16,18 @@
       </ul>
       <button onclick="deleteList()" class="delButton">Delete List</button>
 
+    </div>
       <div id="nonUrgentImportant">
         <H4> Non Urgent, Important </h4>
+          <form onsubmit="event.preventDefault(); createTodo(this)">
+            <input type="text" placeholder="Add Item.." id="firstList" size="55">
+          </form>
+          <ul id="myList">
+          </ul>
+        <button onclick="deleteList()" class="delButton">Delete List</button>
       </div>
 
-    </div>
+
 
   </body>
 </html>

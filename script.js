@@ -37,6 +37,7 @@ function deleteList(){
   var delText = document.getElementById("myList");
   while (delText.firstChild){
     delText.removeChild(delText.firstChild);
+    localStorage.removeItem("tasks");
   }
 }
 
