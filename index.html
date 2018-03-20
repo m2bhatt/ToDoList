@@ -7,27 +7,45 @@
     <title> To Do List </title>
   </head>
   <body onload="retrieveList()">
+
     <div id="urgentImportant">
       <H4> Urgent, Important </H4>
       <form onsubmit="event.preventDefault(); createTodo(this)">
         <input type="text" placeholder="Add Item.." id="firstList" size="55">
       </form>
-      <ul id="myList">
+      <ul id="urgentImportantList">
       </ul>
       <button onclick="deleteList()" class="delButton">Delete List</button>
-
     </div>
-      <div id="nonUrgentImportant">
-        <H4> Non Urgent, Important </h4>
-          <form onsubmit="event.preventDefault(); createTodo(this)">
-            <input type="text" placeholder="Add Item.." id="firstList" size="55">
-          </form>
-          <ul id="myList">
-          </ul>
+
+    <div id="nonUrgentImportant">
+      <H4> Non Urgent, Important </h4>
+        <form onsubmit="event.preventDefault(); createTodo(this)">
+          <input type="text" placeholder="Add Item.." id="firstList" size="55">
+        </form>
+        <ul id="nonUrgentImportantList">
+        </ul>
         <button onclick="deleteList()" class="delButton">Delete List</button>
-      </div>
+    </div>
 
+    <div id="urgentNotImportant">
+      <H4> Non Urgent, Important </h4>
+        <form onsubmit="event.preventDefault(); createTodo(this)">
+          <input type="text" placeholder="Add Item.." id="firstList" size="55">
+        </form>
+        <ul id="urgentNotImportantList">
+        </ul>
+        <button onclick="deleteList()" class="delButton">Delete List</button>
+    </div>
 
-
+    <div id="notUrgentNotImportant">
+      <H4> Non Urgent, Important </h4>
+        <form onsubmit="event.preventDefault(); createTodo(this)">
+          <input type="text" placeholder="Add Item.." id="firstList" size="55">
+        </form>
+        <ul id="notUrgentNotImportantList">
+        </ul>
+        <button onclick="deleteList()" class="delButton">Delete List</button>
+    </div>
   </body>
 </html>

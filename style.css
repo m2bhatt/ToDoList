@@ -6,14 +6,14 @@ body {
 
 input {
   padding: 5px;
-  border-color: #A2798F;
+  border-color: black;
   border-width: 3px;
   margin-left: 20px;
 }
 
 li {
   padding: 7px;
-  color: #A2798F;
+  color: black;
   margin-top: 10px;
   margin-right: 58px;
   margin-left: 22px;
@@ -30,16 +30,37 @@ h4 {
 
 #urgentImportant {
   background-color: #D7C6CF;
-  width: 40%;
+  width: 42%;
   height: 50%;
   margin-left: 5%;
+  float:left;
 }
 
 #nonUrgentImportant {
   background-color: #A2798F;
-  width: 40%;
+  width: 42%;
   height: 50%;
   margin-left: 5%;
+  margin-right: 5%;
+  float: right;
+}
+
+#urgentNotImportant {
+  background-color: #A2798F;
+  width: 42%;
+  height: 50%;
+  margin-left: 5%;
+  margin-top: 2%;
+  float:left;
+}
+
+#notUrgentNotImportant {
+  background-color: #D7C6CF;
+  width: 42%;
+  height: 50%;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
   float: right;
 }
 
