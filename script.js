@@ -46,29 +46,21 @@ function retrieveList(){
   // [ urgentImportant, urgentNotImportant ... ]
   for (var key in savedTasks) {
     // getElementbyId(key) retrieves parent div
-    list = document.getElementById(key).getElementsByTagName("ul")[0]
+    var list = document.getElementById(key).getElementsByTagName("ul")[0];
 
     for (var i = 0; i < savedTasks[key].length; i++) {
       addItem(savedTasks[key][i], list);
     }
   }
 }
-  //document.getElementById(listOfKeys[i]).value;
-//   for (i = 0; i < savedTasks.length; i++){
-//     addItem(savedTasks[i]);
-//   }
-  // For every list in savedTasks:
-  // - Find the right ul DOM node
-  // - For every item in the particular arrays:
-  //   - invoke addItem
-//}
 
-function deleteList(){
-  var listIdentifier = list.parentElement.id;
+function deleteList(button){
+  var listIdentifier = button.parentElement.getElementsByTagName("ul")[0];
   while (listIdentifier.firstChild){
     listIdentifier.removeChild(listIdentifier.firstChild);
-    localStorage.removeItem(tasks[listIdentifier]);
   }
+  tasks[button.parentElement.id] = [];
+  syncWithLocalStorage();
 }
 
 function toggleDone(ev) {
