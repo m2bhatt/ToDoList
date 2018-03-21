@@ -30,16 +30,17 @@ h4 {
 
 #urgentImportant {
   background-color: #D7C6CF;
-  width: 42%;
-  height: 50%;
+  width: 400px;
+  min-height: 400px;
   margin-left: 5%;
   float:left;
+  box-sizing: border-box;
 }
 
 #nonUrgentImportant {
   background-color: #A2798F;
-  width: 42%;
-  height: 50%;
+  width: 400px;
+  min-height: 400px;
   margin-left: 5%;
   margin-right: 5%;
   float: right;
@@ -47,8 +48,8 @@ h4 {
 
 #urgentNotImportant {
   background-color: #A2798F;
-  width: 42%;
-  height: 50%;
+  width: 400px;
+  min-height: 400px;
   margin-left: 5%;
   margin-top: 2%;
   float:left;
@@ -56,8 +57,8 @@ h4 {
 
 #notUrgentNotImportant {
   background-color: #D7C6CF;
-  width: 42%;
-  height: 50%;
+  width: 400px;
+  min-height: 400px;
   margin-top: 2%;
   margin-left: 5%;
   margin-right: 5%;
