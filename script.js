@@ -70,3 +70,5 @@ function toggleDone(ev) {
     ev.target.setAttribute("class", "normalText");
   }
 }
+
+module.exports.storeItem = storeItem;
