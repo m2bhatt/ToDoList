@@ -1,8 +1,8 @@
 var tasks = {
-  urgentImportant: [],
-  nonUrgentImportant: [],
-  urgentNotImportant: [],
-  notUrgentNotImportant: []
+  urgentImportant: new TodoList(),
+  nonUrgentImportant: new TodoList(),
+  urgentNotImportant: new TodoList(),
+  notUrgentNotImportant: new TodoList()
 };
 
 function createTodo(form){
@@ -24,8 +24,8 @@ function addItem(taskDescription, list){ //function call
   renderItem(list, taskDescription);
 }
 
-function storeItem(content, tasks) {
-  tasks.push(content);
+function storeItem(content, todoList) {
+  todoList.add(new Item(content));
 }
 
 function syncWithLocalStorage() {
@@ -42,7 +42,7 @@ function renderItem(list, content) {
 }
 
 function retrieveList(){
-  var savedTasks =  JSON.parse(localStorage.getItem("tasks"));
+  var savedTasks = JSON.parse(localStorage.getItem("tasks"));
   // [ urgentImportant, urgentNotImportant ... ]
   for (var key in savedTasks) {
     // getElementbyId(key) retrieves parent div
@@ -70,5 +70,3 @@ function toggleDone(ev) {
     ev.target.setAttribute("class", "normalText");
   }
 }
-
-module.exports.storeItem = storeItem;
