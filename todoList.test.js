@@ -8,6 +8,7 @@
 const $ = require('jquery');
 const TodoList = require('./TodoList.js');
 const Item = require('./Item.js');
+const Renderer = require('./Renderer.js');
 
 test("New items have a blank description by default", function() {
   var item = new Item();
@@ -70,34 +71,7 @@ test("Todo lists support clearing all items", function() {
   expect(todoList.items).toEqual([])
 });
 
-class Renderer {
-  constructor(todoList, appRootNode) {
-    this.todoList = todoList;
-    this.appRootNode = appRootNode;
-    this.todoListNode = document.createElement("ul");
-    appRootNode.appendChild(this.todoListNode);
-    this.form = document.createElement("form");
-    this.input = document.createElement("input");
-    appRootNode.appendChild(this.form);
-    this.form.appendChild(this.input);
-  }
 
-  render() {
-    for (var item of this.todoList.items) {
-      var listItemNode = document.createElement("li");
-      var text = document.createTextNode(item.description);
-      listItemNode.appendChild(text);
-      this.todoListNode.appendChild(listItemNode);
-    }
-  }
-
-  update() {
-    while (this.todoListNode.firstChild != undefined) {
-      this.todoListNode.removeChild(this.todoListNode.firstChild);
-    }
-    this.render();
-  }
-}
 
 test("Render a todo list with one item", function() {
   document.body.innerHTML = createHTMLAppSkeleton();
