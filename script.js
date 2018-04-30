@@ -1,8 +1,8 @@
 var tasks = {
-  urgentImportant: new TodoList(),
-  nonUrgentImportant: new TodoList(),
-  urgentNotImportant: new TodoList(),
-  notUrgentNotImportant: new TodoList()
+  urgentImportant: [],
+  nonUrgentImportant: [],
+  urgentNotImportant: [],
+  notUrgentNotImportant: []
 };
 
 function createTodo(form){

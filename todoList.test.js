@@ -71,8 +71,6 @@ test("Todo lists support clearing all items", function() {
   expect(todoList.items).toEqual([])
 });
 
-
-
 test("Render a todo list with one item", function() {
   document.body.innerHTML = createHTMLAppSkeleton();
   var todoList = new TodoList();
@@ -83,7 +81,6 @@ test("Render a todo list with one item", function() {
 })
 
 test("Render a todo list with two items", function() {
-  // TODO: Write the test (expectation should be similar or the same as in the refresh test)
   document.body.innerHTML = createHTMLAppSkeleton();
   var todoList = new TodoList();
   todoList.add(new Item("Item One"));
@@ -97,26 +94,21 @@ test("Render a form with input field alongside with the todo list", function() {
   document.body.innerHTML = createHTMLAppSkeleton();
   var todoList = new TodoList();
   new Renderer(todoList, document.getElementById('todo-list-app')).render();
-  // TODO: Write the test
 
   expect($('#todo-list-app > form > input').length).not.toEqual(0);
 });
 
 test("Simulate form field input and ensure that the todo list and UI updates accordingly", function() {
- // TODO: Maybe in 2 weeks :)
-})
-
-test("Refresh todo list", function() {
   document.body.innerHTML = createHTMLAppSkeleton();
-  var todoList = new TodoList();
-  todoList.add(new Item("Render todo list"));
-  var renderer = new Renderer(todoList, document.getElementById('todo-list-app'));
-  todoList.add(new Item("Refresh todo list"));
-  renderer.update();
+  new Renderer(new TodoList(), document.getElementById('todo-list-app')).render();
 
-  expect($('#todo-list-app > ul > li').eq(0).text()).toEqual("Render todo list");
-  expect($('#todo-list-app > ul > li').eq(1).text()).toEqual("Refresh todo list");
-  // TODO: Add expection
+  // Simulate user behaviour
+  const form = $('.todo-list-app form');
+  $(form, 'input').val("My first todo");
+  form.submit();
+
+  // Simulate the users expectation
+  expect($('#todo-list-app > ul > li').eq(0).text()).toEqual("My first todo");
 })
 
 function createHTMLAppSkeleton() {
