@@ -1,4 +1,4 @@
-const $ = require('jquery');
+const Item = require("./Item.js");
 
 class Renderer {
   constructor(todoList, appRootNode) {
@@ -28,7 +28,7 @@ class Renderer {
     // - creates a new item
     // - adds it to the TodoList this renderer manages
     // - updates the UI
-    this.form.onsubmit = this.handleSubmit;
+    this.form.onsubmit = this.handleSubmit.bind(this);
 //    $('todo-list-app').on('submit', event.preventDefault());
 
     // this.todoList.appendChild(this.item);

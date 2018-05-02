@@ -103,8 +103,8 @@ test("Simulate form field input and ensure that the todo list and UI updates acc
   new Renderer(new TodoList(), document.getElementById('todo-list-app')).render();
 
   // Simulate user behaviour
-  const form = $('.todo-list-app form');
-  $(form, 'input').val("My first todo");
+  const form = $('#todo-list-app form');
+  $('input', form).val("My first todo");
   form.submit();
 
   // Simulate the users expectation
