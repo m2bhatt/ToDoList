@@ -1,47 +1,37 @@
+const $ = require('jquery');
 const Item = require("./Item.js");
 
 class Renderer {
-  constructor(todoList, appRootNode) {
+  constructor(todoList, containerElement) {
     this.todoList = todoList;
-    this.appRootNode = appRootNode;
-    this.todoListNode = document.createElement("ul");
-    this.form = document.createElement("form");
-    this.input = document.createElement("input");
+
+    this.$container = $(containerElement);
+    this.$todoList = $('<ul></ul>');
+    this.$form = $('<form></form>');
+    this.$form.on('submit', this.onSubmit.bind(this));
+    this.$input = $('<input></input>').appendTo(this.$form);
+
+    this.$container.append(this.$todoList, this.$form);
   }
 
-  handleSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
-    var item = new Item(this.input.value);
+
+    var item = new Item(this.$input.val());
+
+    this.$input.val("");
     this.todoList.add(item);
-    var listItemNode = document.createElement("li");
-    var text = document.createTextNode(item.description);
-    listItemNode.appendChild(text);
-    this.todoListNode.appendChild(listItemNode);
-    this.form.reset();
+    this._renderItem(item);
   }
 
   render() {
-    this.appRootNode.appendChild(this.todoListNode);
-
-    //var container = $('todo-list-app'),
-    // TODO: Create a form with an onsubmit event handler which
-    // - creates a new item
-    // - adds it to the TodoList this renderer manages
-    // - updates the UI
-    this.form.onsubmit = this.handleSubmit.bind(this);
-//    $('todo-list-app').on('submit', event.preventDefault());
-
-    // this.todoList.appendChild(this.item);
-    // - and prevents the submit default (full page reload)
-    this.appRootNode.appendChild(this.form);
-    this.form.appendChild(this.input);
-
     for (var item of this.todoList.items) {
-      var listItemNode = document.createElement("li");
-      var text = document.createTextNode(item.description);
-      listItemNode.appendChild(text);
-      this.todoListNode.appendChild(listItemNode);
+      this._renderItem(item);
     }
+  }
+
+  _renderItem(item) {
+    this.$todoList.append($("<li></li>").text(item.description));
   }
 }
 
