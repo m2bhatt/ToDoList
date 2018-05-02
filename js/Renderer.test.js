@@ -3,8 +3,11 @@ const TodoList = require('./TodoList.js');
 const Item = require('./Item.js');
 const Renderer = require('./Renderer.js');
 
+beforeEach(function() {
+  createHTMLAppSkeleton();
+});
+
 test("Render a todo list with one item", function() {
-  document.body.innerHTML = createHTMLAppSkeleton();
   var todoList = new TodoList();
   todoList.add(new Item("Render todo list"));
 //  console.log('Todo list app root node: ', document);
@@ -12,18 +15,7 @@ test("Render a todo list with one item", function() {
   expect($('#todo-list-app > ul > li').text()).toEqual('Render todo list');
 })
 
-test("Render a todo list with two items", function() {
-  document.body.innerHTML = createHTMLAppSkeleton();
-  var todoList = new TodoList();
-  todoList.add(new Item("Item One"));
-  todoList.add(new Item("Item Two"));
-  new Renderer(todoList, document.getElementById('todo-list-app')).render();
-  expect($('#todo-list-app > ul > li').eq(0).text()).toEqual("Item One");
-  expect($('#todo-list-app > ul > li').eq(1).text()).toEqual("Item Two");
-});
-
 test("Render a form with input field alongside with the todo list", function() {
-  document.body.innerHTML = createHTMLAppSkeleton();
   var todoList = new TodoList();
   new Renderer(todoList, document.getElementById('todo-list-app')).render();
 
@@ -31,18 +23,35 @@ test("Render a form with input field alongside with the todo list", function() {
 });
 
 test("Simulate form field input and ensure that the todo list and UI updates accordingly", function() {
-  document.body.innerHTML = createHTMLAppSkeleton();
   new Renderer(new TodoList(), document.getElementById('todo-list-app')).render();
 
   // Simulate user behaviour
   const form = $('#todo-list-app form');
+
   $('input', form).val("My first todo");
+  form.submit();
+
+  $('input', form).val("My second todo");
   form.submit();
 
   // Simulate the users expectation
   expect($('#todo-list-app > ul > li').eq(0).text()).toEqual("My first todo");
-})
+  expect($('#todo-list-app > ul > li').eq(1).text()).toEqual("My second todo");
+});
+
+test("Form is reset after a todo item has been added to the todo list", function() {
+  new Renderer(new TodoList(), document.getElementById('todo-list-app')).render();
+
+  // Simulate user behaviour
+  const form = $('#todo-list-app form');
+
+  $('input', form).val("My first todo");
+  form.submit();
+
+  // Simulate the users expectation
+  expect($('#todo-list-app > form > input').eq(0).val()).toEqual("");  
+});
 
 function createHTMLAppSkeleton() {
-  return `<div id='todo-list-app'></div>`
+  document.body.innerHTML = `<div id='todo-list-app'></div>`;
 }
