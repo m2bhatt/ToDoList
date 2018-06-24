@@ -10,6 +10,7 @@ class Item {
 
   toggle() {
     this.isMarkedAsDone = !this.isMarkedAsDone;
+  //  this.setAttribute = ("style", "text-decoration: line-through; line-height: 10px");
   };
 }
 

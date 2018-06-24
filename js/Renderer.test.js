@@ -36,20 +36,40 @@ test("Simulate form field input and ensure that the todo list and UI updates acc
 
   // Simulate the users expectation
   expect($('#todo-list-app > ul > li').eq(0).text()).toEqual("My first todo");
+  expect($('#todo-list-app > ul > li > input').eq(0).attr("type")).toEqual("checkbox");
   expect($('#todo-list-app > ul > li').eq(1).text()).toEqual("My second todo");
+  expect($('#todo-list-app > ul > li > input').eq(1).attr("type")).toEqual("checkbox");
 });
 
 test("Form is reset after a todo item has been added to the todo list", function() {
   new Renderer(new TodoList(), document.getElementById('todo-list-app')).render();
-
   // Simulate user behaviour
   const form = $('#todo-list-app form');
-
   $('input', form).val("My first todo");
   form.submit();
-
   // Simulate the users expectation
-  expect($('#todo-list-app > form > input').eq(0).val()).toEqual("");  
+  expect($('#todo-list-app > form > input').eq(0).val()).toEqual("");
+});
+
+test("Selecting the checkbox next to a todo marks it as done by applying a CSS class", function() {
+  new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
+  // Simulate user behaviour
+  $('input').click();
+  // Simulate the users expectation
+  expect($('#todo-list-app > ul > li').eq(0).hasClass("done")).toEqual(true);
+});
+
+// test to see if clicking checkbox twice will remove the CSS class (more in ACT part)
+test("Selecting the checkbox next to a done todo marks it as undone by applying a CSS class", function() {
+  new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
+  // Simulate user behaviour
+  $('input').click();
+  // Simulate the users expectation
+  expect($('#todo-list-app > ul > li').eq(0).hasClass("notDone")).toEqual(true);
+});
+
+test("Clicking the delete link next to a todo removes it from the todo list", function() {
+
 });
 
 function createHTMLAppSkeleton() {

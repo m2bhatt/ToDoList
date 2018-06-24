@@ -12,20 +12,20 @@ input {
 }
 
 li {
-  padding: 7px;
   color: black;
-  margin-top: 10px;
-  margin-right: 58px;
-  margin-left: 22px;
   font-size: 20px;
-  border: 1px solid #A2798F;
-
 }
 
 h4 {
   color: white;
   padding-left: 20px;
   padding-top: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 #urgentImportant {
@@ -71,12 +71,12 @@ h4 {
   padding: 0;
 }
 
-.strikeItem {
+.done {
   text-decoration: line-through;
   line-height: 10px;
 }
 
-.normalText {
+.notDone {
   text-decoration: none;
   line-height: 10px;
 }

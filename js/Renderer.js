@@ -4,7 +4,6 @@ const Item = require("./Item.js");
 class Renderer {
   constructor(todoList, containerElement) {
     this.todoList = todoList;
-
     this.$container = $(containerElement);
     this.$todoList = $('<ul></ul>');
     this.$form = $('<form></form>');
@@ -31,8 +30,17 @@ class Renderer {
   }
 
   _renderItem(item) {
-    this.$todoList.append($("<li></li>").text(item.description));
+    var $li = $('<li></li>').appendTo(this.$todoList);
+
+    var $checkbox = $('<input type="checkbox"></input>').appendTo($li);
+    $li.append(document.createTextNode(item.description));
+    $checkbox.click(this.onClicked);
   }
+
+  onClicked(event) {
+    $(event.target).parent().addClass("done");
+  }
+
 }
 
 module.exports = Renderer;
