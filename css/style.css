@@ -73,12 +73,10 @@ ul {
 
 .done {
   text-decoration: line-through;
-  line-height: 10px;
 }
 
 .notDone {
   text-decoration: none;
-  line-height: 10px;
 }
 
 .delButton{

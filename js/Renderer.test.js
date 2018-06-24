@@ -64,6 +64,7 @@ test("Selecting the checkbox next to a done todo marks it as undone by applying 
   new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
   // Simulate user behaviour
   $('input').click();
+  $('input').click();
   // Simulate the users expectation
   expect($('#todo-list-app > ul > li').eq(0).hasClass("notDone")).toEqual(true);
 });

@@ -38,7 +38,20 @@ class Renderer {
   }
 
   onClicked(event) {
-    $(event.target).parent().addClass("done");
+    console.log("Event target: " + event.target);
+    console.log("Is checked? " + event.target.checked);
+
+    // parent = $(event.target).parent();
+    // console.log("Parent: " + parent);
+
+    if (event.target.checked) {
+      $(event.target).parent().removeClass("notDone");
+      $(event.target).parent().addClass("done");
+    }
+    else {
+      $(event.target).parent().removeClass("done");
+      $(event.target).parent().addClass("notDone");
+    }
   }
 
 }
