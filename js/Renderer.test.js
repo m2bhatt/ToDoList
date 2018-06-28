@@ -36,9 +36,9 @@ test("Simulate form field input and ensure that the todo list and UI updates acc
 
   // Simulate the users expectation
   expect($('#todo-list-app > ul > li').eq(0).text()).toEqual("My first todo");
-  expect($('#todo-list-app > ul > li > input').eq(0).attr("type")).toEqual("checkbox");
+  expect($('#todo-list-app > ul > li > .toggleStatus').eq(0).attr("type")).toEqual("checkbox");
   expect($('#todo-list-app > ul > li').eq(1).text()).toEqual("My second todo");
-  expect($('#todo-list-app > ul > li > input').eq(1).attr("type")).toEqual("checkbox");
+  expect($('#todo-list-app > ul > li > .toggleStatus').eq(1).attr("type")).toEqual("checkbox");
 });
 
 test("Form is reset after a todo item has been added to the todo list", function() {
@@ -54,7 +54,7 @@ test("Form is reset after a todo item has been added to the todo list", function
 test("Selecting the checkbox next to a todo marks it as done by applying a CSS class", function() {
   new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
   // Simulate user behaviour
-  $('input').click();
+  $('.toggleStatus').click();
   // Simulate the users expectation
   expect($('#todo-list-app > ul > li').eq(0).hasClass("done")).toEqual(true);
 });
@@ -63,18 +63,18 @@ test("Selecting the checkbox next to a todo marks it as done by applying a CSS c
 test("Selecting the checkbox next to a done todo marks it as undone by applying a CSS class", function() {
   new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
   // Simulate user behaviour
-  $('input').click();
-  $('input').click();
+  $('.toggleStatus').click();
+  $('.toggleStatus').click();
   // Simulate the users expectation
   expect($('#todo-list-app > ul > li').eq(0).hasClass("notDone")).toEqual(true);
 });
 
-test("Clicking the delete image next to a todo removes it from the todo list", function() {
+test("Clicking the delete button next to a todo removes it from the todo list", function() {
   new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
 
-  $('input').click();
+  $('.deleteTask').click();
 
-  expect($('#todo-list-app > ul > li').eq(0).hasClass("done")).toEqual(true);
+  expect($('#todo-list-app > ul > li').length).toEqual(0);
 });
 
 function createHTMLAppSkeleton() {

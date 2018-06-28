@@ -1,25 +1,18 @@
 body {
   font-family: verdana;
-  font-size: 20px;
-  background-color: #DFDFDE;
+  font-size: 15px;
+  background-color: #49598c;
 }
 
 input {
   padding: 5px;
-  border-color: black;
   border-width: 3px;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 li {
-  color: black;
-  font-size: 20px;
-}
-
-h4 {
-  color: white;
-  padding-left: 20px;
-  padding-top: 15px;
+  color: #8aa4ff;
+  font-size: 15px;
 }
 
 ul {
@@ -28,58 +21,10 @@ ul {
   margin: 0;
 }
 
-#urgentImportant {
-  background-color: #D7C6CF;
-  width: 400px;
-  min-height: 400px;
-  margin-left: 5%;
-  float:left;
-  box-sizing: border-box;
-}
-
-#nonUrgentImportant {
-  background-color: #A2798F;
-  width: 400px;
-  min-height: 400px;
-  margin-left: 5%;
-  margin-right: 5%;
-  float: right;
-}
-
-#urgentNotImportant {
-  background-color: #A2798F;
-  width: 400px;
-  min-height: 400px;
-  margin-left: 5%;
-  margin-top: 2%;
-  float:left;
-}
-
-#notUrgentNotImportant {
-  background-color: #D7C6CF;
-  width: 400px;
-  min-height: 400px;
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
-  float: right;
-}
-
-#myList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .done {
   text-decoration: line-through;
 }
 
 .notDone {
   text-decoration: none;
-}
-
-.delButton{
-  padding: 5px;
-  margin-left: 20px;
 }

@@ -33,9 +33,8 @@ class Renderer {
 
   _renderItem(item) {
     var $li = $('<li></li>').appendTo(this.$todoList);
-    var $checkbox = $('<input type="checkbox"></input>').appendTo($li);
-
-    var $delItem = $('<input type="button" value="x"></input>');
+    var $checkbox = $('<input class="toggleStatus" type="checkbox"></input>').appendTo($li);
+    var $delItem = $('<input class="deleteTask" type="button" value="x"></input>');
 
     $li.append(document.createTextNode(item.description));
     $li.append($delItem);
@@ -64,7 +63,7 @@ class Renderer {
 
     // explanation of :button
     // what if multiple buttons with multiple lists? how do we assign it to
-    // one element like that specific ul 
+    // one element like that specific ul
     console.log(index);
     this.todoList.removeItemAtIndex(index);
 
