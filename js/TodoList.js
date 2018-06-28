@@ -22,6 +22,14 @@ class TodoList {
     }
   }
 
+  // itemAtIndex(index) {
+  //   return this.items[index];
+  // }
+
+  removeItemAtIndex(index) {
+    this.items.splice(index, 1);
+  }
+
   reset() {
     this.items = [];
   }

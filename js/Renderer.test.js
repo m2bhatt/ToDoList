@@ -69,8 +69,12 @@ test("Selecting the checkbox next to a done todo marks it as undone by applying 
   expect($('#todo-list-app > ul > li').eq(0).hasClass("notDone")).toEqual(true);
 });
 
-test("Clicking the delete link next to a todo removes it from the todo list", function() {
+test("Clicking the delete image next to a todo removes it from the todo list", function() {
+  new Renderer(new TodoList(["My first to do"]), document.getElementById('todo-list-app')).render();
 
+  $('input').click();
+
+  expect($('#todo-list-app > ul > li').eq(0).hasClass("done")).toEqual(true);
 });
 
 function createHTMLAppSkeleton() {
