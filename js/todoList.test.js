@@ -13,6 +13,11 @@ test("New todo lists have no items by default", function() {
   expect(todoList.items).toEqual([]);
 });
 
+test("New todo lists when initialized with null have no items by default", function() {
+  var todoList = new TodoList(null);
+  expect(todoList.items).toEqual([]);
+});
+
 test("New todo lists should be considered empty", function() {
   var todoList = new TodoList();
   expect(todoList.isEmpty()).toBe(true);

@@ -1,10 +1,10 @@
 const $ = require('jquery');
-const Item = require("./Item.js");
 const TodoList = require("./TodoList.js");
 
 class Renderer {
-  constructor(todoList, containerElement) {
-    this.todoList = todoList;
+  constructor(todoListRepository, containerElement) {
+    this.todoListRepository = todoListRepository;
+    this.todoList = todoListRepository.load();
     this.$container = $(containerElement);
     this.$todoList = $('<ul></ul>');
     this.$form = $('<form></form>');
@@ -17,15 +17,17 @@ class Renderer {
   onSubmit(event) {
     event.preventDefault();
 
-    var item = new Item(this.$input.val());
+    var item = this.$input.val();
 
     this.$input.val("");
     this.todoList.add(item);
+    this.todoListRepository.save(this.todoList);
     this._renderItem(item);
   }
 
   render() {
     this.$todoList.empty();
+
     for (var item of this.todoList.items) {
       this._renderItem(item);
     }
@@ -36,12 +38,11 @@ class Renderer {
     var $checkbox = $('<input class="toggleStatus" type="checkbox"></input>').appendTo($li);
     var $delItem = $('<input class="deleteTask" type="button" value="x"></input>');
 
-    $li.append(document.createTextNode(item.description));
+    $li.append(document.createTextNode(item));
     $li.append($delItem);
-    $checkbox.click(this.onClicked);
-    // $delItem.click(this.onDelete);
-    $delItem.on('click', this.onDelete.bind(this));
 
+    $checkbox.click(this.onClicked);
+    $delItem.on('click', this.onDelete.bind(this));
   }
 
   onClicked(event) {

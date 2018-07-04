@@ -1,6 +1,6 @@
 class TodoList {
   constructor(items) {
-    if (items !== undefined){
+    if (items !== undefined && items !== null){
       this.items = items;
     } else {
       this.items = [];
