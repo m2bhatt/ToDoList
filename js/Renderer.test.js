@@ -62,14 +62,14 @@ test("Selecting the checkbox next to a todo marks it as done by applying a CSS c
 });
 
 // test to see if clicking checkbox twice will remove the CSS class (more in ACT part)
-test("Selecting the checkbox next to a done todo marks it as undone by applying a CSS class", function() {
+test("Selecting the checkbox next to a done todo marks it as undone by removing a CSS class", function() {
   createAndSaveTodoList(["My first to do"]);
   new Renderer(new TodoListRepository(), document.getElementById('todo-list-app')).render();
   // Simulate user behaviour
   $('.toggleStatus').click();
   $('.toggleStatus').click();
   // Simulate the users expectation
-  expect($('#todo-list-app > ul > li').eq(0).hasClass("notDone")).toEqual(true);
+  expect($('#todo-list-app > ul > li').eq(0).hasClass("done")).toEqual(false);
 });
 
 test("Clicking the delete button next to a todo removes it from the todo list", function() {
@@ -81,6 +81,18 @@ test("Clicking the delete button next to a todo removes it from the todo list", 
   expect($('#todo-list-app > ul > li').length).toEqual(0);
 });
 
+test("The state of a todo is properly persisted", function() {
+  createAndSaveTodoList(["My first to do"]);
+  new Renderer(new TodoListRepository(), document.getElementById('todo-list-app')).render();
+  $('.toggleStatus').click();
+
+  // Fake reload by removing the old DOM nodes and re-rendering everything
+  $('#todo-list-app').empty();
+  new Renderer(new TodoListRepository(), document.getElementById('todo-list-app')).render();
+
+  expect($('#todo-list-app > ul > li').eq(0).hasClass("done")).toEqual(true);
+});
+
 function createHTMLAppSkeleton() {
   document.body.innerHTML = `<div id='todo-list-app'></div>`;
 }
@@ -89,8 +101,8 @@ function createAndSaveTodoList(items) {
   var todoList = new TodoList(items)
   new TodoListRepository().save(todoList);
 
-  if (JSON.stringify(items) !== localStorage.getItem('todoList')) {
-    throw "Items have not been persisted correctly to local storage"
+  if (JSON.stringify(todoList.items) !== localStorage.getItem('todoList')) {
+    throw "Items have not been persisted correctly to local storage";
   }
 
   return todoList;

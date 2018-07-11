@@ -24,7 +24,3 @@ ul {
 .done {
   text-decoration: line-through;
 }
-
-.notDone {
-  text-decoration: none;
-}

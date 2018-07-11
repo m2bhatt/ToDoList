@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const TodoList = require("./TodoList.js");
+const Item = require("./Item.js");
 
 class Renderer {
   constructor(todoListRepository, containerElement) {
@@ -16,12 +17,10 @@ class Renderer {
 
   onSubmit(event) {
     event.preventDefault();
-
-    var item = this.$input.val();
-
-    this.$input.val("");
+    var item = new Item(this.$input.val(), false);
     this.todoList.add(item);
     this.todoListRepository.save(this.todoList);
+    this.$input.val("");
     this._renderItem(item);
   }
 
@@ -37,43 +36,48 @@ class Renderer {
     var $li = $('<li></li>').appendTo(this.$todoList);
     var $checkbox = $('<input class="toggleStatus" type="checkbox"></input>').appendTo($li);
     var $delItem = $('<input class="deleteTask" type="button" value="x"></input>');
-
-    $li.append(document.createTextNode(item));
+    $li.append(document.createTextNode(item.description));
     $li.append($delItem);
 
-    $checkbox.click(this.onClicked);
+    $checkbox.click(this.onClicked.bind(this));
     $delItem.on('click', this.onDelete.bind(this));
+
+    if (item.isMarkedAsDone) {
+      $checkbox.prop('checked', true);
+      $checkbox.parent().addClass("done");
+    }
   }
 
   onClicked(event) {
-    console.log("Event target: " + event.target);
-    console.log("Is checked? " + event.target.checked);
-
-    if (event.target.checked) {
-      $(event.target).parent().removeClass("notDone");
-      $(event.target).parent().addClass("done");
-    }
-    else {
-      $(event.target).parent().removeClass("done");
-      $(event.target).parent().addClass("notDone");
-    }
+    var index = $(":checkbox").index(event.target);
+    $(event.target).parent().toggleClass("done");
+    this.todoList.toggleStatusOfItemAtIndex(index);
+    this.todoListRepository.save(this.todoList);
   }
+  //   if (item.isMarkedAsDone == false) {
+  //     $(event.target).parent().toggleClass("done");
+  //   }
+  // }
+  // //   if (event.target.checked) {
+  //
+  //     $(event.target).parent().removeClass("notDone");
+  //     $(event.target).parent().addClass("done");
+  //   }
+  //   else {
+  //     $(event.target).parent().removeClass("done");
+  //     $(event.target).parent().addClass("notDone");
+  //   }
+  // }
 
   onDelete(event) {
     var index = $(":button").index(event.target);
-
-    // explanation of :button
-    // what if multiple buttons with multiple lists? how do we assign it to
-    // one element like that specific ul
-    console.log(index);
+  // //  console.log(index);
     this.todoList.removeItemAtIndex(index);
-
-    console.log("Item removed?");
-    console.log("List contents: " + this.todoList.items);
-
+  //   // console.log("Item removed?");
+  //   // console.log("List contents: " + this.todoList.items);
     this.render();
-
-  }
+  // }
+}
 
 }
 

@@ -30,6 +30,28 @@ test("Todo lists support adding items", function() {
   expect(todoList.items).toEqual([item])
 });
 
+test("Todo lists support auto-converting strings to items", function() {
+  var todoList = new TodoList();
+  todoList.add("Some task");
+  var item = todoList.items[0];
+
+  expect(item).toBeInstanceOf(Item);
+  expect(item.description).toEqual("Some task");
+  expect(item.isMarkedAsDone).toEqual(false);
+});
+
+test("Todo lists auto-convert constructor arguments to items if necessary", function() {
+  var todoList = new TodoList([
+    new Item("This is already an Item"),
+    "This is not an Item"
+  ]);
+
+  expect(todoList.items[0]).toBeInstanceOf(Item);
+  expect(todoList.items[0].description).toEqual("This is already an Item");
+  expect(todoList.items[1]).toBeInstanceOf(Item);
+  expect(todoList.items[1].description).toEqual("This is not an Item");
+});
+
 test("Todo lists support removing items", function() {
   var todoList = new TodoList();
   var item = new Item();

@@ -12,7 +12,7 @@ test("Supports saving a todo list", function() {
 
   repository.save(todoList);
 
-  expect(JSON.parse(localStorage.getItem('todoList'))).toEqual(["First to do"]);
+  expect(JSON.parse(localStorage.getItem('todoList'))).toEqual([{"description": "First to do", "isMarkedAsDone": false}]);
 });
 
 test("Returns an empty todo list if no todo list has ever been saved", function() {
@@ -24,7 +24,9 @@ test("Returns an empty todo list if no todo list has ever been saved", function(
 });
 
 test("Supports loading a previously saved todo list", function() {
-  var originalTodoList = new TodoList(["First to do"]);
+  var item = new Item("First to do");
+  item.toggle();
+  var originalTodoList = new TodoList([item]);
   var repository = new TodoListRepository();
 
   repository.save(originalTodoList);

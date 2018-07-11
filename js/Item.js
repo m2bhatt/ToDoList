@@ -1,11 +1,11 @@
 class Item {
-  constructor(description) {
+  constructor(description, isMarkedAsDone) {
     if (description !== undefined) {
       this.description = description;
     } else {
       this.description = '';
     };
-    this.isMarkedAsDone = false;
+    this.isMarkedAsDone = !!isMarkedAsDone;
   }
 
   toggle() {

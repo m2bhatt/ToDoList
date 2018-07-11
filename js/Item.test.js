@@ -15,6 +15,11 @@ test("New items can be initialized with a description", function() {
   expect(item.description).toEqual("Learn JavaScript");
 });
 
+test("New items can be initialized with a state", function() {
+  var item = new Item("Irrelevant description", true);
+  expect(item.isMarkedAsDone).toEqual(true);
+});
+
 test("Toggling the status of a new item marks it as done", function() {
   var item = new Item();
   item.toggle();

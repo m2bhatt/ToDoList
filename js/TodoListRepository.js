@@ -6,7 +6,8 @@ class TodoListRepository {
   }
 
   load() {
-    return new TodoList(JSON.parse(localStorage.getItem('todoList')));
+    var data = JSON.parse(localStorage.getItem('todoList'));
+    return new TodoList(data);
   }
 }
 
